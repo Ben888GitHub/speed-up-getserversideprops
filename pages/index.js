@@ -14,25 +14,12 @@ export default function Home({ initialNumber }) {
 			<main className={styles.main}>
 				<h1>Random number: {initialNumber}</h1>
 			</main>
-
-			<footer className={styles.footer}>
-				<a
-					href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Powered by{' '}
-					<span className={styles.logo}>
-						<Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-					</span>
-				</a>
-			</footer>
 		</div>
 	);
 }
 
 export const getServerSideProps = async ({ res }) => {
-	res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`);
+	await res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`);
 
 	const data = await fetch(`http://localhost:3000/api/joke`);
 	const joke = await data.json();
