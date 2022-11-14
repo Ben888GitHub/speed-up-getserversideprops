@@ -21,7 +21,7 @@ export default function Home({ initialNumber }) {
 export const getServerSideProps = async ({ res }) => {
 	await res.setHeader(
 		'Cache-Control',
-		`public, s-maxage=5, stale-while-revalidate=59`
+		`public, s-maxage=1, stale-while-revalidate=59`
 	);
 
 	const data = await fetch(
