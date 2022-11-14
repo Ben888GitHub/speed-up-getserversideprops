@@ -19,7 +19,10 @@ export default function Home({ initialNumber }) {
 }
 
 export const getServerSideProps = async ({ res }) => {
-	await res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`);
+	await res.setHeader(
+		'Cache-Control',
+		`s-maxage=10, stale-while-revalidate=59`
+	);
 
 	const data = await fetch(
 		`https://speed-up-getserversideprops.vercel.app/api/joke`
